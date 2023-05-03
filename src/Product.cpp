@@ -210,6 +210,45 @@ ostream& operator<< (ostream& output, const Product& t_product)
 }
 
 
+/**
+ * @brief 
+ * 
+ * @param t_product 
+ * @return true 
+ * @return false 
+ */
+bool Product::operator< (const Product& t_product) const
+{
+    return (this->m_productName < t_product.GetProductName());
+}
+
+
+/**
+ * @brief 
+ * 
+ * @param t_product 
+ * @return true 
+ * @return false 
+ */
+bool Product::operator> (const Product& t_product) const
+{
+    return (this->m_productName > t_product.GetProductName());
+}
+
+
+/**
+ * @brief 
+ * 
+ * @param t_product 
+ * @return true 
+ * @return false 
+ */
+bool Product::operator== (const Product& t_product) const
+{
+    return (this->m_productName == t_product.GetProductName());
+}
+
+
 ///////////////////////////////////////////////// Static Methods (related to class only and have nothing to do with instance) //////////////////////////////////////////////////
 int Product::GetTotalNumberOfProducts()
 {
