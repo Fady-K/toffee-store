@@ -50,6 +50,11 @@ public:
     /* Operators overloading */
                                     // bitwise operator (extraction operator <<)
     friend ostream& operator<< (ostream& output, const Product& t_prodcut);
+    
+    /* logical operators */
+    bool operator<(const Product& t_product) const;
+    bool operator>(const Product& t_product) const;
+    bool operator==(const Product& t_product) const;
 
 
     /* static Methods (related to class only, and has nothing with instance) */
