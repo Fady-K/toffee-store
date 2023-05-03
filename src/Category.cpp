@@ -125,8 +125,15 @@ vector<Product> Category::GetAllProducts() const
 
 
 ///////////////////////////////////////////////// Instance Methods /////////////////////////////////////////////////////////////////
-
-
+/**
+ * @brief Adds new product to Category
+ * 
+ * @param t_name newProduct's name
+ * @param t_descr newProduct's description
+ * @param t_price newProduct's init price
+ * @param t_amount newProdcuct's available amount
+ * @return Product newProduct
+ */
 Product Category::AddProduct(const string& t_name, const string& t_descr, double t_price, const int t_amount)
 {
     // create new product
@@ -150,6 +157,12 @@ Product Category::AddProduct(const string& t_name, const string& t_descr, double
 }
 
 
+/**
+ * @brief Removes a product by name
+ * 
+ * @param t_name Name of prodcut that will be removed
+ * @return Product Removed product
+ */
 Product Category::RemoveProduct(const string& t_name)
 {
     // check if exsists
@@ -175,6 +188,11 @@ Product Category::RemoveProduct(const string& t_name)
 }
 
 
+/**
+ * @brief Sorts products based on name
+ * 
+ * @param ascendingOrder Order of sorting
+ */
 void Category::SortProducts(const bool ascendingOrder)
 {
     if (ascendingOrder)
@@ -190,6 +208,13 @@ void Category::SortProducts(const bool ascendingOrder)
 
 }
 
+
+/**
+ * @brief Takes product name and returns its index 
+ * 
+ * @param t_productName Name of product 
+ * @return int Index of product
+ */
 int Category::SearchProductByName(const string& t_productName) const
 {
     // check if prodcut exists
@@ -208,6 +233,12 @@ int Category::SearchProductByName(const string& t_productName) const
 }
 
 
+/**
+ * @brief Takes productName and returns reference to it, so as user be able to update it
+ * 
+ * @param t_productName Products'Name
+ * @return Product& The product
+ */
 Product& Category::GetProductByName(const string& t_productName)
 {
     return (*this)[SearchProductByName(t_productName)];
@@ -237,6 +268,13 @@ void Category::DisplayAllProducts() const
 }
 
 
+/**
+ * @brief 
+ * 
+ * @param t_productName 
+ * @return true 
+ * @return false 
+ */
 bool Category::Exists(const string& t_productName)  const
 {
     auto it = find_if(this->t_products.begin(), this->t_products.end(), [&]( const Product& p) {return CompareByName(p, t_productName); });
@@ -254,6 +292,13 @@ bool Category::Exists(const string& t_productName)  const
 }
 
 
+/**
+ * @brief 
+ * 
+ * @param t_product 
+ * @return true 
+ * @return false 
+ */
 bool Category::Exists(const Product& t_product) const
 {
     auto it = find(this->t_products.begin(), this->t_products.end(), t_product);
@@ -270,12 +315,23 @@ bool Category::Exists(const Product& t_product) const
     }
 }
 
+
+/**
+ * @brief Checks whether category is empty of not
+ * 
+ * @return true if category is empty 
+ * @return false if categpry isn't emtpy
+ */
 bool Category::IsEmpty() const
 {
     return t_products.empty();
 }
 
 
+/**
+ * @brief Removes all products in category
+ * 
+ */
 void Category::Clear()
 {
     if (IsEmpty())
@@ -284,7 +340,16 @@ void Category::Clear()
     }
     else
     {
+        // clrea t_products
         this->t_products.clear();
+        
+        // set number of products to zeros
+        this->SetNumberOfProducts(0);
+
+        // shrink v to fit it new size and resize
+        t_products.shrink_to_fit();
+
+        // footer
         cout << "!...................... " << this->m_name << " Department Has Been Cleared .....................!" << endl;
     }
  
@@ -299,11 +364,22 @@ Product& Category::operator[](const int index)
 }
 
 
+/**
+ * @brief Overloading of << operator (extraction)
+ * 
+ * @param output An ostream& ref incase there are mulitple adding to ostream (cout << name << title << age << endl)
+ * @param t_cat Category that will be added to output stream
+ * @return ostream& refefrence to ostream
+ */
 ostream& operator<< (ostream& output, const Category& t_cat)
 {
-    // header
-    output << "------------------------------------ " << t_cat.m_name << " Department ------------------------------------" << endl;
 
+    // header
+    string s = "------------------------------------ " + t_cat.m_name + " Department" + ((t_cat.IsEmpty())? (" Is Empty"): "") + " ------------------------------------";
+
+    // add s to ostream
+    output << s << endl;
+    
     // print each product
     for (auto it = t_cat.t_products.begin(); it != (t_cat.t_products.end()); ++it)
     {
@@ -318,7 +394,27 @@ ostream& operator<< (ostream& output, const Category& t_cat)
 
 
 
+////////////////////////////////////////////////////////// Static Methods (related to class only) ////////////////////////////
+/**
+ * @brief Keeps track of the created Categories on Program level and return their count
+ * 
+ * @return int Current number of created categories
+ */
+int Category::GetAllNumberOfCategories()
+{
+    return s_categoriesCount;
+}
+
+
 ////////////////////////////////////////////////////////// Helper Functions /////////////////////////////////////////////
+/**
+ * @brief Takse product and t_name, and compare product.name with the passed name (string)
+ * @details main purpose of this function is work as lamabda function in find_if
+ * @param p Product whose name will be compared
+ * @param t_name Which will be compared with Product's name
+ * @return true if p.GetName() = t_name
+ * @return false if p.GetName() != t_name
+ */
 bool Category::CompareByName(const Product& p, const string& t_name) const
 {
     return (p.GetProductName() == t_name);
