@@ -50,8 +50,8 @@ public:
     Product& operator[](const int index);
 
 
-    // /* static Methods (related to class only, and has nothing with instance) */
-    // static int GetAllNumberOfCategories();
+    /* static Methods (related to class only, and has nothing with instance) */
+    static int GetAllNumberOfCategories();
 
 
 private:
