@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iomanip>
 // #include "./src/Product.cpp"
-#include "./src/Category.cpp"
+#include "./src/CategoriesManger.cpp"
 #define endl "\n"
 
 
@@ -20,15 +20,33 @@ int main()
 
     electorincs.AddProduct("T.V", "", 5000, 10);
     electorincs.AddProduct("Sweeper", "", 5000, 10);
+    electorincs.AddProduct("Laptop", "", 20000, 5);
+
+    Category Dairy("Dairy");
+    Dairy.AddProduct("Milik", "", 23, 20);
+    Dairy.AddProduct("Butter", "", 250, 40);
+    Dairy.AddProduct("Cheese", "", 40, 20);
     // electorincs.DisplayAllProducts();
 
-    cout << electorincs.SearchProductByName("T.V") << endl;
-    cout << electorincs.GetProductByName("T.V").IncreaseAmount(20) << endl;
-    cout << electorincs.GetName() << endl;
-    cout << electorincs.GetNumberOfProducts() << endl;
-    cout << electorincs.GetAllProducts()[0] << endl;
+    vector<Category> cats = {electorincs, Dairy};
 
-    cout << electorincs << endl;
+    CategoriesManger m(cats);
+    // m.SortCategories(false);
+    // m.Clear();
+    // cout << m.Exists("Dairy") << endl;
+    // m.RemoveCategory("Dairy")
+    cout << m.GetCategoryByName("Dairy");
+    // m.DisplayAllCategories();
+
+    // cout << electorincs.SearchProductByName("T.V") << endl;
+    // cout << electorincs.GetProductByName("T.V").IncreaseAmount(20) << endl;
+    // cout << electorincs.GetName() << endl;
+    // cout << electorincs.GetNumberOfProducts() << endl;
+    // cout << electorincs.GetAllProducts()[0] << endl;
+    // electorincs.Clear();
+
+    // cout << electorincs << endl;
+    // cout << Dairy << endl;
     // cout << electorincs << endl;
     // cout << electorincs << endl;
     // electorincs.DisplayAllProducts();
