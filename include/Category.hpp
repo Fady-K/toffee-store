@@ -47,6 +47,9 @@ public:
 
     /* Operators overloading */
     friend ostream& operator<< (ostream& output, const Category& t_cat);
+    bool operator<(const Category& t_category) const;
+    bool operator>(const Category& t_category) const;
+    bool operator==(const Category& t_category) const;
     Product& operator[](const int index);
 
 
