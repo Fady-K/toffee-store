@@ -143,6 +143,9 @@ Product Category::AddProduct(const string& t_name, const string& t_descr, double
     {
         // emplace back is faster than push back
         t_products.emplace_back(p);
+
+        // incrment number of products by one
+        this->n_products++;
     }
     else
     {
@@ -150,8 +153,7 @@ Product Category::AddProduct(const string& t_name, const string& t_descr, double
         t_products[n_products++] = p;
     }
 
-    // incrment number of products by one
-    this->n_products++;
+
 
     return p;
 }
@@ -170,14 +172,15 @@ Product Category::RemoveProduct(const string& t_name)
 
     if (it != t_products.end())
     {
-        // if prodcut found then remove it
+        // if prodcut found store it in temp, then remove it
+        Product removedProduct = (*it);
         t_products.erase(it);
 
         // reduce prodcut count
         this->n_products --;
 
         // return the earsed one
-        return (*it);
+        return removedProduct;
     }
     else
     {
@@ -392,6 +395,24 @@ ostream& operator<< (ostream& output, const Category& t_cat)
     return output;
 }
 
+
+bool Category::operator<(const Category& t_category) const
+{
+    return (this->m_name < t_category.GetName());
+}
+
+
+bool Category::operator>(const Category& t_category) const
+{
+    return (this->m_name > t_category.GetName());
+}
+
+
+bool Category::operator==(const Category& t_category) const
+{
+    return (this->m_name == t_category.GetName());
+
+}
 
 
 ////////////////////////////////////////////////////////// Static Methods (related to class only) ////////////////////////////
