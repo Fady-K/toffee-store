@@ -30,7 +30,7 @@ string User::GetUserName() const
 
 void User::DisplayInfo() const
 {
-    cout  << "useQrName: " << GetUserName() << endl;
+    cout  << "userName: " << GetUserName() << endl;
     cout  << "password: " << GetPassowrd() << endl;
 }
 
