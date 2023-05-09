@@ -5,6 +5,7 @@
 #include <iomanip>
 // #include "./src/Product.cpp"
 #include "./src/CategoriesManger.cpp"
+#include "./src/User.cpp"
 #define endl "\n"
 
 
@@ -35,7 +36,7 @@ int main()
     // m.Clear();
     // cout << m.Exists("Dairy") << endl;
     // m.RemoveCategory("Dairy")
-    cout << m.GetCategoryByName("Dairy");
+    // cout << m.GetCategoryByName("mina");
     // m.DisplayAllCategories();
 
     // cout << electorincs.SearchProductByName("T.V") << endl;
@@ -54,6 +55,12 @@ int main()
    
     
     // cout << p << endl;
+
+    User u("fady kamal", "20210282FadyKamal");
+    u.DisplayInfo();
+
+    cout << u << endl;
+    
     
 
     return 0;
