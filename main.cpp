@@ -7,7 +7,8 @@
 // #include "./src/Product.cpp"
 // #include "./src/CategoriesManger.cpp"
 // #include "./src/User.cpp"
-#include "./src/ShippingInfo.cpp"
+#include "./src/OrderDetails.cpp"
+// #include "./src/ShippingInfo.cpp"
 #define endl "\n"
 
 
@@ -96,8 +97,12 @@ int main()
     // wallet.print();
 
 
-    // Testing ShippingInfo Class //
-    ShippingInfo sh("fady kamal", "01220680646", "popfadykamal151617@gmail.com", "Cairo", "eldwagen 1 elsoudiya");
-    cout << sh << endl;
+    // //Testing ShippingInfo Class //
+    // ShippingInfo sh("fady kamal", "01220680646", "popfadykamal151617@gmail.com", "Cairo", "eldwagen 1 elsoudiya");
+    // cout << sh << endl;
+
+    OrderDetails od("FCAI-ORDER-1", "FCAI-PRODUCT-1", 10, 500, 5000);
+
+    cout << od << endl;
     return 0;
 }
