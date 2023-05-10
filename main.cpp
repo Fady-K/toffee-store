@@ -7,7 +7,7 @@
 // #include "./src/Product.cpp"
 // #include "./src/CategoriesManger.cpp"
 // #include "./src/User.cpp"
-#include "./src/Cart.cpp"
+#include "./src/ShippingInfo.cpp"
 #define endl "\n"
 
 
@@ -65,22 +65,22 @@ int main()
     // cout << u << endl;
 
     // testing Cart //
-    Product tv("t.v", "electronics", "", 5000, 10);
-    cout << tv << endl;
-    Cart c;
+    // Product tv("t.v", "electronics", "", 5000, 10);
+    // cout << tv << endl;
+    // Cart c;
     // c.print();
-    Product nokia("Nokia", "electronics", "", 3000, 50);
-    c.AddToCart(tv, 3);
-    c.AddToCart(nokia, 1);
+    // Product nokia("Nokia", "electronics", "", 3000, 50);
+    // c.AddToCart(tv, 3);
+    // c.AddToCart(nokia, 1);
     // c.IncreaseProductAmount("Nokia", 4);
-    c.DecreaseProductAmount("t.v", 20);
+    // c.DecreaseProductAmount("t.v", 20);
     // c.RemoveFromCart("Nokia");
     // cout << c.exists("t.v").first << endl;
     // cout << (c.exists("t.v").second)->IncreaseAmount(10) << endl;
 
 
     // c.Clear();
-    c.print();
+    // c.print();
 
 
     // c.RemoveFromCart("t.v"); 
@@ -95,5 +95,9 @@ int main()
     // cout << wallet.GetBalance() << endl;
     // wallet.print();
 
+
+    // Testing ShippingInfo Class //
+    ShippingInfo sh("fady kamal", "01220680646", "popfadykamal151617@gmail.com", "Cairo", "eldwagen 1 elsoudiya");
+    cout << sh << endl;
     return 0;
 }
