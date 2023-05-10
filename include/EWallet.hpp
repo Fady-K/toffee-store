@@ -17,6 +17,7 @@ public:
     ~EWallet();                                     // Destructor
 
     /* Setters And Getters */
+    bool SetBalance(const double t_balance);
     string GetId() const;
     double GetBalance() const;
 

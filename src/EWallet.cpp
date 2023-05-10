@@ -6,22 +6,35 @@ EWallet::EWallet(): _balance(0){}
 
 EWallet::EWallet(const int t_balance)
 {
-    // check if valid amount of money
-    if(Utility::isValidAmountOfMoney(t_balance))
-    {
-        // init attribute
-        this->_balance = t_balance;
-    }
-    else
-    {
-        throw runtime_error("!! Balance < 0 !!");
-    }
+    // set via setter to apply validation
+    SetBalance(t_balance);
 }
 
 EWallet::~EWallet(){}
 
 
 //////////////////////////////////////////////// Setters And Getters ///////////////////
+bool EWallet::SetBalance(const double t_balance)
+{
+    // flag
+    bool updated = false;
+
+    // validation
+    if (Utility::isValidAmountOfMoney(t_balance))
+    {
+        // set it
+        this->_balance = t_balance;
+        updated = true;
+    }
+    else
+    {
+        // throw logical error argument
+        throw runtime_error("!! Balance < 0 !!");    
+    }
+
+    return updated;
+}
+
 string EWallet::GetId() const
 {
     return _id;
@@ -50,29 +63,29 @@ bool EWallet::WithDraw(const double t_amount)
 {
     // to know whether withdrawn or not
     bool withdrawn = false;
-    if (Utility::isValidAmountOfMoney(t_amount))
+
+    if (!isEmpty())
     {
-        if (!isEmpty())
+        if (isThereEnoughtMoneyToWithDraw(t_amount))
         {
-            if (isThereEnoughtMoneyToWithDraw(t_amount))
+            // withdraw
+            double currentBalance = GetBalance();
+            double newBalance =(currentBalance -= t_amount);
+
+            // update balance
+            if (SetBalance(newBalance))
             {
-                // withdraw
-                _balance -= t_amount;
                 withdrawn = true;
-            }
-            else
-            {
-                cout << "!! Not Enought Balance In Ewallet !!" << endl;
             }
         }
         else
         {
-            cout << "!! Ewallet is empty !!" << endl;
+            cout << "!! Not Enought Balance In Ewallet !!" << endl;
         }
     }
     else
     {
-        cout << "!! invalid amount of money !!" << endl;
+        cout << "!! Ewallet is empty !!" << endl;
     }
 
     return withdrawn;
@@ -83,15 +96,11 @@ bool EWallet::Desposite(const double t_amount)
     // flag
     bool deposted = false;
 
-    // if valid amount of money
-    if (Utility::isValidAmountOfMoney(t_amount))
+    // new Balance
+    double newBalance = _balance += t_amount;
+    if (SetBalance(newBalance))
     {
-        this->_balance += t_amount;
         deposted = true;
-    }
-    else
-    {
-        cout << "!! invalid amount of money !!" << endl;
     }
 
     // return flag
