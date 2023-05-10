@@ -101,8 +101,9 @@ int main()
     // ShippingInfo sh("fady kamal", "01220680646", "popfadykamal151617@gmail.com", "Cairo", "eldwagen 1 elsoudiya");
     // cout << sh << endl;
 
-    OrderDetails od("FCAI-ORDER-1", "FCAI-PRODUCT-1", 10, 500, 5000);
 
-    cout << od << endl;
+    // // Test OrderDetails //
+    // OrderDetails od("FCAI-ORDER-1", "FCAI-PRODUCT-1", 10, 500, 5000);
+    // cout << od << endl;
     return 0;
 }
