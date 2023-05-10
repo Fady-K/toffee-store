@@ -4,6 +4,7 @@
 #include <regex>
 #include <limits>
 #include <algorithm>
+#define endl "\n"
 using namespace std;
 
 class Utility
@@ -20,6 +21,11 @@ public:
     static bool isValidAddress(string  address);
     static bool isValidAmountOfMoney(double amountOfMoney);
     static bool isValidAccountID(string accountID);
+    static bool isValidEmail(string email);
+    static bool isValidCity(string city);
+    static bool isValidOrderId(string t_orderId);
+    static bool isValidProductId(string t_productId);
+
 
 
     static string getValidNameFromUser();

@@ -60,6 +60,32 @@ bool Utility::isValidAccountID(string accountID)
     return regex_match(accountID, pattern);
 }
 
+bool Utility::isValidEmail(string email)
+{
+    regex pattern("[A-Za-z0-9_]+@(gmail|hotmail)\\.com");
+    return regex_match(email, pattern);
+}
+
+
+bool Utility::isValidCity(string city)
+{
+    regex pattern("^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$");
+    return regex_match(city, pattern);
+}
+
+bool Utility::isValidOrderId(string t_OrderId)
+{
+    regex pattern("^FCAI\\-\\ORDER\\-\\d+$");
+    return regex_match(t_OrderId, pattern);
+}
+
+bool Utility::isValidProductId(string t_productId)
+{
+    regex pattern("^FCAI\\-\\PRODUCT\\-\\d+$");
+    return regex_match(t_productId, pattern);
+}
+
+
 string Utility::getValidNameFromUser()
 {
     // name to store user input
