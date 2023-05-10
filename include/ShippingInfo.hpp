@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include "../src/Utility.cpp"
-#define endl "\n"
 using namespace std;
 
 class ShippingInfo

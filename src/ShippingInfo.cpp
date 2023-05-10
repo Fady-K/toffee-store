@@ -35,7 +35,6 @@ void ShippingInfo::SetRecipientPhoneNumber(const string& t_phoneNumber)
     if (Utility::isValidPhoneNumber(t_phoneNumber))
     {
         this->_recipientPhoneNumber = t_phoneNumber;
-        cout << "true" << endl;
     }
     else
     {
@@ -45,8 +44,7 @@ void ShippingInfo::SetRecipientPhoneNumber(const string& t_phoneNumber)
 
 void ShippingInfo::SetEmail(const string& t_email)
 {
-    // if (Utility::isValidEmail(t_email))
-    if (true)
+    if (Utility::isValidEmail(t_email))
     {
         this->_email = t_email;
     }
@@ -58,8 +56,7 @@ void ShippingInfo::SetEmail(const string& t_email)
 
 void ShippingInfo::SetCity(const string& t_city)
 {
-    // if (Utility::isValidAddress(t_city))
-    if (true)
+    if (Utility::isValidCity(t_city))
     {
         this->_city = t_city;
     }
