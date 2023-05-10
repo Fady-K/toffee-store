@@ -91,8 +91,8 @@ bool Product::DecreaseAmount(const int& t_value)
     // decreased variable
     bool decreased = true;
 
-    // check if there is no amount
-    if (this->m_availableAmount == 0)
+    // check if there is no available amount
+    if (this->m_availableAmount == 0 || (m_availableAmount - t_value) < 0)
     {
         cout << "!! There are no enough Prodcuts !!" << endl;
         decreased = false;
