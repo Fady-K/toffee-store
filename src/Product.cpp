@@ -2,25 +2,29 @@
 
 ///////////////////////////////////////////////// Statice attributes //////////////////////////////////////////////////
 int Product::s_productsCount = 0;
+int Product::s_aliveProductsCount = 0;
 
 
 ///////////////////////////////////////////////// Rule Of big 5 //////////////////////////////////////////////////
 Product::Product(): m_productName("None"), m_productCategory("None"), m_productDescription("None"), m_productPrice(0), m_availableAmount(0)
 {
-    // increament total n of Products
-    this->s_productsCount ++;   
+    // increament total n of Products and alive products and init id
+    this->m_productId = ("FCAI-PRODUCT-" + to_string(++s_productsCount));   
+    s_aliveProductsCount++;
 }
 
 Product::Product(string t_name, string t_category, string t_descr, double t_price, int t_amount): m_productName(t_name), m_productCategory(t_category), m_productDescription(t_descr), m_productPrice(t_price), m_availableAmount(t_amount)
 {
-    // increament total n of Products
-    this->s_productsCount ++; 
+    // increament total n of Products and alive products and init  id
+    this->m_productId = ("FCAI-PRODUCT-" + to_string(++s_productsCount));   
+    s_aliveProductsCount++;
+    
 }
 
 Product::~Product()
 {
     // decreament total n of Products
-    this->s_productsCount --; 
+    this->s_aliveProductsCount --; 
 }
 
 
@@ -65,7 +69,7 @@ double Product::GetPrice() const
     return this->m_productPrice;
 }
 
-void Product::SetAmount(const int& t_amount)
+void Product::SetAmount(const int t_amount)
 {
     this->m_availableAmount = t_amount;
 }
@@ -76,8 +80,13 @@ int Product::GetAvailableAmount() const
 }
 
 
+string Product::GetProductId() const
+{
+    return this->m_productId;
+}
+
 ///////////////////////////////////////////////// Instance Methods  //////////////////////////////////////////////////
-int Product::IncreaseAmount(const int& t_value)
+int Product::IncreaseAmount(const int t_value)
 {
     // add new quntity
     this->m_availableAmount += t_value;
@@ -86,7 +95,7 @@ int Product::IncreaseAmount(const int& t_value)
     return m_availableAmount;
 }
 
-bool Product::DecreaseAmount(const int& t_value)
+bool Product::DecreaseAmount(const int t_value)
 {
     // decreased variable
     bool decreased = true;
@@ -172,7 +181,7 @@ ostream& operator<< (ostream& output, const Product& t_product)
 
     // Print the top border of the box
     output << "+" << string(boxWidth - 2, '-') << "+" << endl;
-
+    
     // Print the name of the product, centered within the box
     int nameLength = t_product.GetProductName().length();
     int spaces = (boxWidth - 2 - nameLength) / 2;
@@ -250,7 +259,14 @@ bool Product::operator== (const Product& t_product) const
 
 
 ///////////////////////////////////////////////// Static Methods (related to class only and have nothing to do with instance) //////////////////////////////////////////////////
-int Product::GetTotalNumberOfProducts()
+int Product::GetTotalNumberAliveProducts()
+{
+    // return total count
+    return s_aliveProductsCount;
+}
+
+
+int Product::GetTotalNumberProductsThisClassMade()
 {
     // return total count
     return s_productsCount;

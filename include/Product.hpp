@@ -7,8 +7,10 @@ class Product
 private:
     /* static attributes ( Related to class only and have nothing to do with instance) */
     static int s_productsCount;
+    static int s_aliveProductsCount;
 
     /* instance attributs ( instance properties ) */
+    string m_productId;
     string m_productName;
     string m_productCategory;
     string m_productDescription;
@@ -36,12 +38,14 @@ public:
     void SetPrice(const double& t_price);
     double GetPrice() const;
     
-    void SetAmount(const int& t_amount);
+    void SetAmount(const int t_amount);
     int GetAvailableAmount() const;
 
+    string GetProductId() const;
+
     /* Instance Methods */
-    int IncreaseAmount(const int& t_value);
-    bool DecreaseAmount(const int& t_value);
+    int IncreaseAmount(const int t_value);
+    bool DecreaseAmount(const int t_value);
 
     Product Rename(const string& t_newName);
     Product Print() const;
@@ -58,7 +62,8 @@ public:
 
 
     /* static Methods (related to class only, and has nothing with instance) */
-    static int GetTotalNumberOfProducts();
+    static int GetTotalNumberAliveProducts();
+    static int GetTotalNumberProductsThisClassMade();
 
 
 private:
